@@ -1,0 +1,31 @@
+{
+  "name": "playable-template-phaser",
+  "version": "1.0.0",
+  "description": "A starter template for creating playable ads using Phaser and @smoud/playable-sdk with TypeScript support",
+  "scripts": {
+    "dev": "playable-scripts dev",
+    "build": "playable-scripts build"
+  },
+  "keywords": [
+    "playable",
+    "ads",
+    "template",
+    "phaser",
+    "webgl",
+    "2d",
+    "typescript",
+    "game"
+  ],
+  "author": "Smoud",
+  "dependencies": {
+    "@smoud/playable-sdk": "^1.0.8",
+    "phaser": "^3.88.2"
+  },
+  "devDependencies": {
+    "@smoud/playable-scripts": "^1.0.15",
+    "prettier": "^2.7.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
