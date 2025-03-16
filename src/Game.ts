@@ -15,6 +15,9 @@ class MainScene extends Phaser.Scene {
   }
 
   create() {
+    // Set up resize listener
+    sdk.on('resize', this.resize, this);
+
     // Create container for button positioning
     this.installButton = this.add.container(this.cameras.main.centerX, this.cameras.main.centerY);
 
@@ -69,7 +72,7 @@ class MainScene extends Phaser.Scene {
     sdk.start();
   }
 
-  resize(width: number, height: number) {
+  private resize = (width: number, height: number) => {
     // Calculate scale based on screen dimensions
     const scaleX = width / 320;
     const scaleY = height / 480;
@@ -79,15 +82,17 @@ class MainScene extends Phaser.Scene {
       this.installButton.setPosition(width / 2, height / 2);
       this.installButton.setScale(scale);
     }
+  };
+
+  shutdown() {
+    // Clean up listeners when scene is shut down
+    sdk.off('resize', this.resize, this);
   }
 }
 
-export class Game {
-  private game: Phaser.Game;
-  private mainScene: MainScene;
-
+export class Game extends Phaser.Game {
   constructor(width: number, height: number) {
-    const config: Phaser.Types.Core.GameConfig = {
+    super({
       type: Phaser.AUTO,
       width,
       height,
@@ -98,34 +103,25 @@ export class Game {
         autoCenter: Phaser.Scale.CENTER_BOTH
       },
       scene: MainScene
-    };
-
-    this.game = new Phaser.Game(config);
-
-    // Wait for scene to be ready
-    this.game.events.once('ready', () => {
-      this.mainScene = this.game.scene.getScene('MainScene') as MainScene;
     });
   }
 
   public resize(width: number, height: number): void {
-    this.game.scale.resize(width, height);
-    if (this.mainScene) {
-      this.mainScene.resize(width, height);
-    }
+    this.scale.resize(width, height);
   }
 
   public pause(): void {
-    this.game.scene.pause('MainScene');
+    this.scene.pause('MainScene');
     console.log('Game paused');
   }
 
   public resume(): void {
-    this.game.scene.resume('MainScene');
+    this.scene.resume('MainScene');
     console.log('Game resumed');
   }
 
   public volume(value: number): void {
+    this.sound.setVolume(value);
     console.log(`Volume changed to: ${value}`);
   }
 
