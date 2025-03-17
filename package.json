@@ -18,7 +18,7 @@
   ],
   "author": "Smoud",
   "dependencies": {
-    "@smoud/playable-sdk": "^1.0.8",
+    "@smoud/playable-sdk": "^1.0.10",
     "phaser": "^3.88.2"
   },
   "devDependencies": {
