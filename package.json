@@ -18,11 +18,11 @@
   ],
   "author": "Smoud",
   "dependencies": {
-    "@smoud/playable-sdk": "^1.0.12",
+    "@smoud/playable-sdk": "^1.0.17",
     "phaser": "^3.88.2"
   },
   "devDependencies": {
-    "@smoud/playable-scripts": "^1.0.17",
+    "@smoud/playable-scripts": "^1.0.18",
     "prettier": "^2.7.1"
   },
   "engines": {
